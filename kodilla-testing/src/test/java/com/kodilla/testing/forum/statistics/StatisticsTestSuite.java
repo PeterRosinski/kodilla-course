@@ -15,20 +15,9 @@ public class StatisticsTestSuite {
 
     private static int testCounter = 0;
 
-    @BeforeClass
-    public static void beforeAllTests() {
-        System.out.println("This is the beginning of tests.");
-    }
-
-    @AfterClass
-    public static void afterAllTests() {
-        System.out.println("All tests are finished.");
-    }
-
     @Before
     public void beforeEveryTest() {
         testCounter++;
-        System.out.println("------------------------------");
         System.out.println("Preparing to execute test #" + testCounter);
         System.out.println("------------------------------");
     }
@@ -52,18 +41,12 @@ public class StatisticsTestSuite {
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println("Testing usersAmount");
-        Assert.assertEquals(3,statisticsCalculator.getUsersAmount());
-        System.out.println("Testing postsAmount");
-        Assert.assertEquals(0,statisticsCalculator.getPostsAmount());
-        System.out.println("Testing commentsAmount");
-        Assert.assertEquals(0,statisticsCalculator.getCommentsAmount());
-        System.out.println("Testing avgPostsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerPost");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
+        Assert.assertEquals("usersAmount", 3,statisticsCalculator.getUsersAmount());
+        Assert.assertEquals("postsAmount",0,statisticsCalculator.getPostsAmount());
+        Assert.assertEquals("commentsAmount",0,statisticsCalculator.getCommentsAmount());
+        Assert.assertEquals("avgPostsAmountPerUser", Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerUser",Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerPost",Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
 
     }
 
@@ -86,18 +69,12 @@ public class StatisticsTestSuite {
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println("Testing usersAmount");
-        Assert.assertEquals(30,statisticsCalculator.getUsersAmount());
-        System.out.println("Testing postsAmount");
-        Assert.assertEquals(1000,statisticsCalculator.getPostsAmount());
-        System.out.println("Testing commentsAmount");
-        Assert.assertEquals(0,statisticsCalculator.getCommentsAmount());
-        System.out.println("Testing avgPostsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(33.333333333333333),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerPost");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
+        Assert.assertEquals("usersAmount", 30,statisticsCalculator.getUsersAmount());
+        Assert.assertEquals("postsAmount",1000,statisticsCalculator.getPostsAmount());
+        Assert.assertEquals("commentsAmount",0,statisticsCalculator.getCommentsAmount());
+        Assert.assertEquals("avgPostsAmountPerUser", 33.3333,statisticsCalculator.getAvgPostsAmountPerUser(),1e-4);
+        Assert.assertEquals("avgCommentsAmountPerUser",Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerPost",Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
 
     }
 
@@ -120,18 +97,12 @@ public class StatisticsTestSuite {
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println("Testing usersAmount");
-        Assert.assertEquals(30,statisticsCalculator.getUsersAmount());
-        System.out.println("Testing postsAmount");
-        Assert.assertEquals(30,statisticsCalculator.getPostsAmount());
-        System.out.println("Testing commentsAmount");
-        Assert.assertEquals(0,statisticsCalculator.getCommentsAmount());
-        System.out.println("Testing avgPostsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(1.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerPost");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
+        Assert.assertEquals("usersAmount", 30,statisticsCalculator.getUsersAmount());
+        Assert.assertEquals("postsAmount",30,statisticsCalculator.getPostsAmount());
+        Assert.assertEquals("commentsAmount",0,statisticsCalculator.getCommentsAmount());
+        Assert.assertEquals("avgPostsAmountPerUser", Double.doubleToLongBits(1.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerUser",Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerPost",Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
 
     }
 
@@ -154,18 +125,12 @@ public class StatisticsTestSuite {
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println("Testing usersAmount");
-        Assert.assertEquals(10,statisticsCalculator.getUsersAmount());
-        System.out.println("Testing postsAmount");
-        Assert.assertEquals(30,statisticsCalculator.getPostsAmount());
-        System.out.println("Testing commentsAmount");
-        Assert.assertEquals(15,statisticsCalculator.getCommentsAmount());
-        System.out.println("Testing avgPostsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(3.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(1.5),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerPost");
-        Assert.assertEquals(Double.doubleToLongBits(0.5),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
+        Assert.assertEquals("usersAmount", 10,statisticsCalculator.getUsersAmount());
+        Assert.assertEquals("postsAmount",30,statisticsCalculator.getPostsAmount());
+        Assert.assertEquals("commentsAmount",15,statisticsCalculator.getCommentsAmount());
+        Assert.assertEquals("avgPostsAmountPerUser", Double.doubleToLongBits(3.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerUser",Double.doubleToLongBits(1.5),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerPost",Double.doubleToLongBits(0.5),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
 
     }
 
@@ -188,18 +153,12 @@ public class StatisticsTestSuite {
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println("Testing usersAmount");
-        Assert.assertEquals(10,statisticsCalculator.getUsersAmount());
-        System.out.println("Testing postsAmount");
-        Assert.assertEquals(30,statisticsCalculator.getPostsAmount());
-        System.out.println("Testing commentsAmount");
-        Assert.assertEquals(60,statisticsCalculator.getCommentsAmount());
-        System.out.println("Testing avgPostsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(3.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(6.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerPost");
-        Assert.assertEquals(Double.doubleToLongBits(2.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
+        Assert.assertEquals("usersAmount", 10,statisticsCalculator.getUsersAmount());
+        Assert.assertEquals("postsAmount",30,statisticsCalculator.getPostsAmount());
+        Assert.assertEquals("commentsAmount",60,statisticsCalculator.getCommentsAmount());
+        Assert.assertEquals("avgPostsAmountPerUser", Double.doubleToLongBits(3.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerUser",Double.doubleToLongBits(6.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerPost",Double.doubleToLongBits(2.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
 
     }
 
@@ -222,18 +181,12 @@ public class StatisticsTestSuite {
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println("Testing usersAmount");
-        Assert.assertEquals(100,statisticsCalculator.getUsersAmount());
-        System.out.println("Testing postsAmount");
-        Assert.assertEquals(100,statisticsCalculator.getPostsAmount());
-        System.out.println("Testing commentsAmount");
-        Assert.assertEquals(1000,statisticsCalculator.getCommentsAmount());
-        System.out.println("Testing avgPostsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(1.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(10.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerPost");
-        Assert.assertEquals(Double.doubleToLongBits(10.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
+        Assert.assertEquals("usersAmount", 100,statisticsCalculator.getUsersAmount());
+        Assert.assertEquals("postsAmount",100,statisticsCalculator.getPostsAmount());
+        Assert.assertEquals("commentsAmount",1000,statisticsCalculator.getCommentsAmount());
+        Assert.assertEquals("avgPostsAmountPerUser", Double.doubleToLongBits(1.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerUser",Double.doubleToLongBits(10.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerPost",Double.doubleToLongBits(10.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
 
     }
 
@@ -253,18 +206,12 @@ public class StatisticsTestSuite {
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
 
         //Then
-        System.out.println("Testing usersAmount");
-        Assert.assertEquals(0,statisticsCalculator.getUsersAmount());
-        System.out.println("Testing postsAmount");
-        Assert.assertEquals(50,statisticsCalculator.getPostsAmount());
-        System.out.println("Testing commentsAmount");
-        Assert.assertEquals(100,statisticsCalculator.getCommentsAmount());
-        System.out.println("Testing avgPostsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerUser");
-        Assert.assertEquals(Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
-        System.out.println("Testing avgCommentsAmountPerPost");
-        Assert.assertEquals(Double.doubleToLongBits(2.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
+        Assert.assertEquals("usersAmount", 0,statisticsCalculator.getUsersAmount());
+        Assert.assertEquals("postsAmount",50,statisticsCalculator.getPostsAmount());
+        Assert.assertEquals("commentsAmount",100,statisticsCalculator.getCommentsAmount());
+        Assert.assertEquals("avgPostsAmountPerUser", Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgPostsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerUser",Double.doubleToLongBits(0.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerUser()));
+        Assert.assertEquals("avgCommentsAmountPerPost",Double.doubleToLongBits(2.0),Double.doubleToLongBits(statisticsCalculator.getAvgCommentsAmountPerPost()));
 
     }
 
