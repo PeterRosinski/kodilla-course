@@ -18,4 +18,11 @@ public class Triangle implements Shape {
     public double getField() {
         return 0.5*a*h;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Triangle)) return false;
+        final Triangle e = (Triangle) o;
+        return Double.doubleToLongBits(this.a)==Double.doubleToLongBits(e.a) && Double.doubleToLongBits(this.h)==Double.doubleToLongBits(e.h);
+    }
 }

@@ -16,4 +16,11 @@ public class Square implements Shape {
     public double getField() {
         return a*a;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Square)) return false;
+        final Square e = (Square) o;
+        return Double.doubleToLongBits(this.a)==Double.doubleToLongBits(e.a);
+    }
 }
