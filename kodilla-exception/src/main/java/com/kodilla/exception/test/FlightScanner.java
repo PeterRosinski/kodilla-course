@@ -11,22 +11,16 @@ public class FlightScanner {
     }
 
     public void findFlight(Flight flight) throws RouteNotFoundException {
-        boolean isInMap = false;
-        String txt = "";
-        for (Map.Entry<String, Boolean> flightEntry : flightsMap.entrySet()) {
-            if (flightEntry.getKey().equals(flight.getArrivalAirport())) {
-                isInMap=true;
-                if (flightEntry.getValue()) {
-                    txt = "jest lot bezposredni na wskazane lotnisko";
-                } else {
-                    txt = "brak mozliwosci lotu bezposredniego na wskazane lotnisko.";
-                }
+
+        try {
+            if(flightsMap.get(flight.getArrivalAirport())) {
+                System.out.println("jest lot bezposredni na wskazane lotnisko");
+            } else {
+                System.out.println("brak mozliwosci lotu bezposredniego na wskazane lotnisko.");
             }
-        }
-        if (isInMap) {
-            System.out.println("Znalazlem rekord, " + txt);
-        } else {
+        } catch (NullPointerException e) {
             throw new RouteNotFoundException();
         }
+
     }
 }
