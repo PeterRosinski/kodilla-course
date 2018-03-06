@@ -1,8 +1,9 @@
-package com.kodilla.challenges;
+package com.kodilla.orders;
 
 import java.util.Objects;
 
 public class Product {
+
     private String serialNumber;
     private String name;
 

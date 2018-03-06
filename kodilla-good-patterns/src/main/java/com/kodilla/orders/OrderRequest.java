@@ -1,4 +1,4 @@
-package com.kodilla.challenges;
+package com.kodilla.orders;
 
 public class OrderRequest {
 
