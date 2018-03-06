@@ -12,13 +12,15 @@ public class FlightScanner {
 
     public void findFlight(Flight flight) throws RouteNotFoundException {
 
-        try {
-            if(flightsMap.get(flight.getArrivalAirport())) {
+        Boolean searchedFlight = flightsMap.get(flight.getArrivalAirport());
+
+        if(searchedFlight!=null) {
+            if(searchedFlight) {
                 System.out.println("jest lot bezposredni na wskazane lotnisko");
             } else {
                 System.out.println("brak mozliwosci lotu bezposredniego na wskazane lotnisko.");
             }
-        } catch (NullPointerException e) {
+        } else {
             throw new RouteNotFoundException();
         }
 
