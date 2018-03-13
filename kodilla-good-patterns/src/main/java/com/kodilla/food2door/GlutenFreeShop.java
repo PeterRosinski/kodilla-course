@@ -29,8 +29,10 @@ public class GlutenFreeShop implements Suppliers{
 
     @Override
     public boolean process(OrderDetails orderDetails) {
-        //TODO wymysl implementacje
-        return false;
+        System.out.println("--------");
+        System.out.println("Przygotowanie formularza zamówienia");
+        System.out.println("Generacja pliku PDF");
+        return true;
     }
 
     public String getName() {

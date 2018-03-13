@@ -15,5 +15,4 @@ public class SuppliersRetriever {
         return suppliersList;
 
     }
-
 }

@@ -29,7 +29,8 @@ public class HealthyShop implements Suppliers {
 
     @Override
     public boolean process(OrderDetails orderDetails) {
-        //TODO wymysl implementacje
+        System.out.println("-----");
+        System.out.println("Brak komunikacji z systemem dostawcy");
         return false;
     }
 

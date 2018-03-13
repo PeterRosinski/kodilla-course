@@ -3,6 +3,7 @@ package com.kodilla.food2door;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class TheBestSupplierSearcher {
 
@@ -12,13 +13,17 @@ public class TheBestSupplierSearcher {
         this.suppliersList = suppliersList;
     }
 
-    public Suppliers search(OrderDetails orderDetails) {
-
-        return suppliersList.stream()
+    public Suppliers search(OrderDetails orderDetails) throws SupplierNotFoundException {
+        Optional<AvailableProductsDto> availableProductsDto = suppliersList.stream()
                 .flatMap(products->products.retrieveAvailableProductsList().stream())
-                .filter(product -> product.getProduct().equals(orderDetails.getProduct()))
-                .filter(product -> product.getQuantityInStock() >= orderDetails.getQuantity())
-                .min(Comparator.comparing(AvailableProductsDto::getPrice)).get().getSupplier();
+                .filter(products -> products.getProduct().equals(orderDetails.getProduct()))
+                .filter(products -> products.getQuantityInStock() >= orderDetails.getQuantity())
+                .min(Comparator.comparing(AvailableProductsDto::getPrice));
+        if(availableProductsDto.orElse(null)==null) {
+            throw new SupplierNotFoundException();
+        } else {
+            return availableProductsDto.get().getSupplier();
+        }
     }
 
     public List<Suppliers> getSuppliersList() {

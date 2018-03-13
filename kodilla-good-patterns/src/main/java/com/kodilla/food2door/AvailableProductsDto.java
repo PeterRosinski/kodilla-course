@@ -29,4 +29,5 @@ public class AvailableProductsDto {
     public Double getQuantityInStock() {
         return quantityInStock;
     }
+
 }

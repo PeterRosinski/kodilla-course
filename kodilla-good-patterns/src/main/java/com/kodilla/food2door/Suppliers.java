@@ -6,5 +6,4 @@ public interface Suppliers {
 
     List<AvailableProductsDto> retrieveAvailableProductsList();
     boolean process(OrderDetails orderDetails);
-
 }

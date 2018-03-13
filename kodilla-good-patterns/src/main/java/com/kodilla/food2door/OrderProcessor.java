@@ -4,8 +4,11 @@ public class OrderProcessor {
 
     public void process(OrderRequest orderRequest) {
 
-        //TODO w przypadku pustego obiektu rzucamy wyjatek
-        orderRequest.getSupplier().process(orderRequest.getOrderDetails());
+        if(orderRequest.getSupplier().process(orderRequest.getOrderDetails())) {
+            System.out.println("Proces zamówienia zakończony powodzeniem");
+        } else {
+            System.out.println("Proces zamówienia zakończony niepowodzeniem");
+        }
 
     }
 
