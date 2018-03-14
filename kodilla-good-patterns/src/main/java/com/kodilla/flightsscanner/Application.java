@@ -8,6 +8,7 @@ public class Application {
 
         //inicjacja mapy lotów - miejsce startu : miejsce lądowania
         FlightsRetriever flightsRetriever = new FlightsRetriever();
+        FlightsScanner flightsScanner = new FlightsScanner(flightsRetriever.retrieve());
         //flightsRetriever.retrieve() -> to powinno zwracać mapę wszystkich możliwych lotów i ją przekazujemy dalej do serwisu
 
         //utworzenie obiektu poszukiwanego lotu
