@@ -5,7 +5,9 @@ import java.util.List;
 
 public class ConnectionsRetriever {
     public List<Connection> retrieve() {
+
         List<Connection> connectionsList = new ArrayList<>();
+
         connectionsList.add(new Flight("",""));
         connectionsList.add(new Flight("Warsaw","Moscow"));
         connectionsList.add(new Flight("Warsaw","Tokyo"));
@@ -57,7 +59,9 @@ public class ConnectionsRetriever {
         connectionsList.add(new Flight("London","Tokyo"));
         connectionsList.add(new Flight("London","Warsaw"));
         connectionsList.add(new Flight("London","Cracow"));
+
         return connectionsList;
+
     }
 
 }

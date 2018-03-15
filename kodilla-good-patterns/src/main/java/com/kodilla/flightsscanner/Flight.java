@@ -41,4 +41,5 @@ public class Flight implements Connection {
     public String toString() {
         return departureLocation + " -> " + arrivalLocation;
     }
+
 }

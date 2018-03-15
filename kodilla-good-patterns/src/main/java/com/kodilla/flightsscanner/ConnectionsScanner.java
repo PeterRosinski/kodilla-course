@@ -1,5 +1,6 @@
 package com.kodilla.flightsscanner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +29,28 @@ public class ConnectionsScanner {
                 .filter(connectionEntry->connectionEntry.equals(connection))
                 .collect(Collectors.toList());
     }
-    /*
+
+    public List<Connection> searchDirectConnection(String departureLocation, String arrivalLocation) {
+        return connectionsList.stream()
+                .filter(connectionEntry->connectionEntry.getDepartureLocation().equals(departureLocation) &&
+                                         connectionEntry.getArrivalLocation().equals(arrivalLocation))
+                .collect(Collectors.toList());
+    }
+
     public List<Connection> searchIndirectConnections(Connection connection) {
-        return;
-    } */
+
+        List<Connection> searchedConnections = new ArrayList<>();
+        for(Connection connectionEntry : connectionsList.stream()
+                .filter(connectionEntry->connectionEntry.getDepartureLocation().equals(connection.getDepartureLocation()))
+                .filter(connectionEntry->!connectionEntry.getArrivalLocation().equals(connection.getArrivalLocation()))
+                .flatMap(connectionEntry->searchConnectionsFromDepartureLocation(connectionEntry.getArrivalLocation()).stream())
+                .filter(connectionEntry->connectionEntry.getDepartureLocation().equals(connection.getDepartureLocation()) ||
+                        connectionEntry.getArrivalLocation().equals(connection.getArrivalLocation()))
+                .collect(Collectors.toList())) {
+            searchedConnections.addAll(searchDirectConnection(connection.getDepartureLocation(),connectionEntry.getDepartureLocation()));
+            searchedConnections.add(connectionEntry);
+        }
+        return searchedConnections;
+    }
 
 }

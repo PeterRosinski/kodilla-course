@@ -6,7 +6,7 @@ public class ConnectionsViewer {
 
     public void view(List<Connection> viewedList) {
 
-        if(viewedList.size()>0) {
+        if (viewedList.size()>0) {
             viewedList.stream()
                     .forEach(System.out::println);
         } else {
