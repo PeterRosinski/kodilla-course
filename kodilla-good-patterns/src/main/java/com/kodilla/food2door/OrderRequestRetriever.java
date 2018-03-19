@@ -12,10 +12,10 @@ public class OrderRequestRetriever {
 
         SuppliersRetriever suppliersRetriever = new SuppliersRetriever();
 
-        TheBestSupplierSearcher theBestSupplierSearcher = new TheBestSupplierSearcher(suppliersRetriever.retrieveSuppliersList());
+        SupplierSearcher supplierSearcher = new SupplierSearcher(suppliersRetriever.retrieveSuppliersList());
         try {
             System.out.println("Wyszukiwanie produktu wśród dostawców po najniższej cenie");
-            Suppliers supplier = theBestSupplierSearcher.search(orderDetails);
+            Supplier supplier = supplierSearcher.searchByPrice(orderDetails);
             System.out.println("Znaleziono potencjalnego dostawcę produktu: " + supplier.toString());
             return new OrderRequest(supplier,orderDetails);
         } catch (SupplierNotFoundException e) {

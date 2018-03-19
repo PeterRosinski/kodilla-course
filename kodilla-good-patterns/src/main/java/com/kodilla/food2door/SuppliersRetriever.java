@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class SuppliersRetriever {
 
-    public List<Suppliers> retrieveSuppliersList() {
+    public List<Supplier> retrieveSuppliersList() {
 
-        List<Suppliers> suppliersList = new ArrayList<>();
+        List<Supplier> suppliersList = new ArrayList<>();
         suppliersList.add(new ExtraFoodShop());
         suppliersList.add(new HealthyShop());
         suppliersList.add(new GlutenFreeShop());

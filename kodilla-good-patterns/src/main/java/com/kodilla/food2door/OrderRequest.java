@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class OrderRequest {
 
-    private Suppliers supplier;
+    private Supplier supplier;
     private OrderDetails orderDetails;
 
-    public OrderRequest(final Suppliers supplier, final OrderDetails orderDetails) {
+    public OrderRequest(final Supplier supplier, final OrderDetails orderDetails) {
         this.supplier = supplier;
         this.orderDetails = orderDetails;
     }
 
-    public Suppliers getSupplier() {
+    public Supplier getSupplier() {
         return supplier;
     }
 

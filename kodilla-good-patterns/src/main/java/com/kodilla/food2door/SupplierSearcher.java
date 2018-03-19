@@ -5,28 +5,24 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class TheBestSupplierSearcher {
+public class SupplierSearcher {
 
-    private List<Suppliers> suppliersList;
+    private List<Supplier> suppliersList;
 
-    public TheBestSupplierSearcher(List<Suppliers> suppliersList) {
+    public SupplierSearcher(List<Supplier> suppliersList) {
         this.suppliersList = suppliersList;
     }
 
-    public Suppliers search(OrderDetails orderDetails) throws SupplierNotFoundException {
+    public Supplier searchByPrice(OrderDetails orderDetails) throws SupplierNotFoundException {
         Optional<AvailableProductsDto> availableProductsDto = suppliersList.stream()
                 .flatMap(products->products.retrieveAvailableProductsList().stream())
                 .filter(products -> products.getProduct().equals(orderDetails.getProduct()))
                 .filter(products -> products.getQuantityInStock() >= orderDetails.getQuantity())
                 .min(Comparator.comparing(AvailableProductsDto::getPrice));
-        if(availableProductsDto.orElse(null)==null) {
-            throw new SupplierNotFoundException();
-        } else {
-            return availableProductsDto.get().getSupplier();
-        }
+        return availableProductsDto.orElseThrow(SupplierNotFoundException::new).getSupplier();
     }
 
-    public List<Suppliers> getSuppliersList() {
+    public List<Supplier> getSuppliersList() {
         return suppliersList;
     }
 
@@ -34,7 +30,7 @@ public class TheBestSupplierSearcher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TheBestSupplierSearcher that = (TheBestSupplierSearcher) o;
+        SupplierSearcher that = (SupplierSearcher) o;
         return Objects.equals(suppliersList, that.suppliersList);
     }
 
@@ -46,7 +42,7 @@ public class TheBestSupplierSearcher {
 
     @Override
     public String toString() {
-        return "TheBestSupplierSearcher{" +
+        return "SupplierSearcher{" +
                 "suppliersList=" + suppliersList +
                 '}';
     }

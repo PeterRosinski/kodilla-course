@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ExtraFoodShop implements Suppliers {
+public class ExtraFoodShop implements Supplier {
 
     private String name;
     private String description;

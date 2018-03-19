@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class GlutenFreeShop implements Suppliers{
+public class GlutenFreeShop implements Supplier {
 
     private String name;
     private String description;
