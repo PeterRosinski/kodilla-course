@@ -13,12 +13,16 @@ public class User {
         return userName;
     }
 
-    public String getPublisher() {
-        return socialPublisher.share();
+    public SocialPublisher getPublisher() {
+        return socialPublisher;
     }
 
-    public void sharePost(SocialPublisher socialPublisher) {
+    public void setPublisher(SocialPublisher socialPublisher) {
         this.socialPublisher = socialPublisher;
+    }
+
+    public String sharePost() {
+        return socialPublisher.share();
     }
 
 }

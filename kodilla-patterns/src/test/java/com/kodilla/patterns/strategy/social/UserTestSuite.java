@@ -13,14 +13,14 @@ public class UserTestSuite {
         User username3 = new ZGeneration("username3");
 
         //When
-        String username1Publisher = username1.getPublisher();
-        String username2Publisher = username2.getPublisher();
-        String username3Publisher = username3.getPublisher();
+        String username1Post = username1.sharePost();
+        String username2Post = username2.sharePost();
+        String username3Post = username3.sharePost();
 
         //Then
-        Assert.assertEquals("Facebook", username1Publisher);
-        Assert.assertEquals("Twitter", username2Publisher);
-        Assert.assertEquals("Snapchat", username3Publisher);
+        Assert.assertEquals("Facebook", username1Post);
+        Assert.assertEquals("Twitter", username2Post);
+        Assert.assertEquals("Snapchat", username3Post);
     }
 
     @Test
@@ -29,13 +29,13 @@ public class UserTestSuite {
         User username = new Millenials("username");
 
         //When
-        String usernameBeforeChange = username.getPublisher();
-        username.sharePost(new TwitterPublisher());
-        String usernameAfterChange = username.getPublisher();
+        String usernamePostBeforeChange = username.sharePost();
+        username.setPublisher(new TwitterPublisher());
+        String usernamePostAfterChange = username.sharePost();
 
         //Then
-        Assert.assertEquals("Facebook", usernameBeforeChange);
-        Assert.assertEquals("Twitter", usernameAfterChange);
+        Assert.assertEquals("Facebook", usernamePostBeforeChange);
+        Assert.assertEquals("Twitter", usernamePostAfterChange);
 
     }
 }
