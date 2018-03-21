@@ -7,7 +7,7 @@ public class BigmacTestSuite {
 
     @Test
     public void testBigmacNew() {
-        //Given
+        //Given & When
         Bigmac bigmac = new Bigmac.BigmacBuilder()
                             .roll(Bigmac.BigmacBuilder.ROLL_WITHSESAME)
                             .burgers(2)
@@ -17,13 +17,11 @@ public class BigmacTestSuite {
                             .ingredient(Bigmac.BigmacBuilder.INGREDIENT_CHILLI)
                             .build();
         System.out.println(bigmac);
-        //When
-        int howManyIngredients = bigmac.getIngredients().size();
         //Then
         Assert.assertEquals("ROLL WITH SESAME",bigmac.getRoll());
         Assert.assertEquals(2,bigmac.getBurgers());
         Assert.assertEquals("1000 ISLANDS",bigmac.getSauce());
-        Assert.assertEquals(3,howManyIngredients);
+        Assert.assertEquals(3,bigmac.getIngredients().size());
     }
 
 }
