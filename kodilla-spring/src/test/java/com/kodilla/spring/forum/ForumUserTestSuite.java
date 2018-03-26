@@ -14,6 +14,7 @@ public class ForumUserTestSuite {
 
     @Test
     public void testGetUsername() {
+
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
@@ -22,6 +23,7 @@ public class ForumUserTestSuite {
         String name = user.getUsername();
         //Then
         Assert.assertEquals("John Smith", name);
+
     }
 
 }
