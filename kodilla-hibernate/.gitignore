@@ -1,15 +1,5 @@
 .gradle
 /build/
-/kodilla-testing/out/
-/kodilla-stream/out/
-/kodilla-exception/out/
-/kodilla-good-patterns/out/
-/kodilla-patterns/out/
-/kodilla-jdbc/out/
-/kodilla-spring-intro/out/
-/kodilla-spring/out/
-/kodilla-spring-web/out/
-/kodilla-hibernate/out/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -19,6 +9,7 @@
 .project
 .settings
 .springBeans
+.sts4-cache
 
 ### IntelliJ IDEA ###
 .idea
