@@ -9,22 +9,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
+
+    @Autowired
+    EmployeeDao employeeDao;
     @Autowired
     CompanyDao companyDao;
 
-    @Test
-    public void testSaveManyToMany(){
-        //Given
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+    private Employee johnSmith;
+    private Employee stephanieClarckson;
+    private Employee lindaKovalsky;
+    private Company softwareMachine;
+    private Company dataMaesters;
+    private Company greyMatter;
 
-        Company softwareMachine = new Company("Software Machine");
-        Company dataMaesters = new Company("Data Maesters");
-        Company greyMatter = new Company("Grey Matter");
+    private int softwareMachineId;
+    private int dataMaestersId;
+    private int greyMatterId;
+
+    private void prepareDataToTest() {
+        johnSmith = new Employee("John", "Smith");
+        stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        softwareMachine = new Company("Software Machine");
+        dataMaesters = new Company("Data Maesters");
+        greyMatter = new Company("Grey Matter");
 
         softwareMachine.getEmployees().add(johnSmith);
         dataMaesters.getEmployees().add(stephanieClarckson);
@@ -37,14 +51,34 @@ public class CompanyDaoTestSuite {
         stephanieClarckson.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
+    }
+
+    private void saveDataInDatabase() {
+        companyDao.save(softwareMachine);
+        softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        greyMatterId = greyMatter.getId();
+    }
+
+    private void cleanUpDatabase() {
+        try {
+            companyDao.delete(softwareMachineId);
+            companyDao.delete(dataMaestersId);
+            companyDao.delete(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+
+    @Test
+    public void testSaveManyToMany(){
+        //Given
+        prepareDataToTest();
 
         //When
-        companyDao.save(softwareMachine);
-        int softwareMachineId = softwareMachine.getId();
-        companyDao.save(dataMaesters);
-        int dataMaestersId = dataMaesters.getId();
-        companyDao.save(greyMatter);
-        int greyMatterId = greyMatter.getId();
+        saveDataInDatabase();
 
         //Then
         Assert.assertNotEquals(0, softwareMachineId);
@@ -52,12 +86,38 @@ public class CompanyDaoTestSuite {
         Assert.assertNotEquals(0, greyMatterId);
 
         //CleanUp
-        //try {
-        //    companyDao.delete(softwareMachineId);
-        //    companyDao.delete(dataMaestersId);
-        //    companyDao.delete(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+        cleanUpDatabase();
+    }
+
+    @Test
+    public void testQueryRetrievingEmployeesWithSpecificLastName(){
+        //Given
+        prepareDataToTest();
+        saveDataInDatabase();
+
+        //When
+        List<Employee> resultList = employeeDao.retrieveEmployeesWithSpecificLastName("Smith");
+
+        //Then
+        Assert.assertEquals(1, resultList.size());
+
+        //CleanUp
+        cleanUpDatabase();
+    }
+
+    @Test
+    public void testQueryRetrievingCompaniesWithNamesStartingWith() {
+        //Given
+        prepareDataToTest();
+        saveDataInDatabase();
+
+        //When
+        List<Company> resultList = companyDao.retrieveCompaniesWithNamesStartingWith("sof");
+
+        //Then
+        Assert.assertEquals(1, resultList.size());
+
+        //CleanUp
+        cleanUpDatabase();
     }
 }
