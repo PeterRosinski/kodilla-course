@@ -5,9 +5,17 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQuery(
-        name = "Employee.retrieveEmployeesWithSpecificLastName",
-        query = "FROM Employee WHERE lastname = :LASTNAME"
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = "Employee.retrieveEmployeesWithSpecificLastName",
+                        query = "FROM Employee WHERE lastname = :LASTNAME"
+                ),
+                @NamedQuery(
+                        name = "Employee.retrieveEmployeesWithGivenPartOfLastName",
+                        query = "FROM Employee WHERE UPPER(lastname) LIKE UPPER(:PARTLASTNAME)"
+                )
+        }
 )
 @Entity
 @Table(name = "EMPLOYEES")

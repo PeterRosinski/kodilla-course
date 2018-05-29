@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedQuery(
+        name = "Company.retrieveCompaniesWithPartOfName",
+        query = "FROM Company WHERE UPPER(name) LIKE UPPER(:PARTNAME)"
+)
 @NamedNativeQuery(
         name = "Company.retrieveCompaniesWithNamesStartingWith",
         query = "SELECT * FROM COMPANIES"  +
