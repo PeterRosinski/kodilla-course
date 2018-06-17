@@ -4,6 +4,7 @@ import com.kodilla.testing2.config.WebDriverConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -73,9 +74,29 @@ public class CrudAppTestSuite {
 
         Thread.sleep(10000);
 
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
     }
 
+    private void deleteCreatedTestTask(String taskName) throws InterruptedException {
 
+        driver.navigate().refresh();
+
+        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed());
+
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]")).getText().equals(taskName))
+                .forEach(theForm -> {
+                    WebElement buttonDeleteTask =
+                            theForm.findElement(By.xpath(".//div/fieldset[1]/button[4]"));
+                    buttonDeleteTask.click();
+                });
+
+        Thread.sleep(5000);
+
+    }
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
 
@@ -115,6 +136,7 @@ public class CrudAppTestSuite {
 
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
+        deleteCreatedTestTask(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
 
     }
